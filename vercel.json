@@ -18,6 +18,10 @@
         {
           "key": "Permissions-Policy",
           "value": "camera=(), microphone=(), geolocation=()"
+        },
+        {
+          "key": "Content-Security-Policy-Report-Only",
+          "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://vsrmhjtcgmvaficvbois.supabase.co; connect-src 'self' https://vsrmhjtcgmvaficvbois.supabase.co wss://vsrmhjtcgmvaficvbois.supabase.co; font-src 'self' data:; upgrade-insecure-requests"
         }
       ]
     }
