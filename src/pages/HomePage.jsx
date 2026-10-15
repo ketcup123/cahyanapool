@@ -41,30 +41,37 @@ export default function HomePage() {
     photoService.getPublished().then(setPhotos);
   }, []);
 
-  // Pilih foto unggulan untuk setiap kategori.
-const featured = categories
-  .map((category) => {
-    const categoryPhotos = photos.filter(
-      (photo) =>
-        photo &&
-        Array.isArray(photo.categories) &&
-        photo.categories.includes(category.id)
-    );
+  // Pilih foto unggulan berdasarkan kategori masing-masing.
+  const featured = categories
+    .map((category) => {
+      const categoryPhotos = photos.filter(
+        (photo) =>
+          photo &&
+          Array.isArray(photo.categories) &&
+          photo.categories.includes(category.id)
+      );
 
-    return (
-      categoryPhotos.find((photo) => photo.featured) ||
-      categoryPhotos[0] ||
-      null
-    );
-  })
-  .filter(
-    (photo, index, list) =>
-      photo &&
-      list.findIndex(
-        (item) => item && item.id === photo.id
-      ) === index
-  )
-  .slice(0, 4);
+      // Cari foto yang benar-benar unggulan untuk kategori ini.
+      // Jika tidak ada, gunakan foto pertama dalam kategori.
+      return (
+        categoryPhotos.find(
+          (photo) =>
+            Array.isArray(photo.featuredCategories) &&
+            photo.featuredCategories.includes(category.id)
+        ) ||
+        categoryPhotos[0] ||
+        null
+      );
+    })
+    // Hindari menampilkan foto yang sama dua kali.
+    .filter(
+      (photo, index, list) =>
+        photo &&
+        list.findIndex(
+          (item) => item && item.id === photo.id
+        ) === index
+    )
+    .slice(0, 4);
 
   // Buka foto yang dipilih di lightbox.
   const openPhoto = (photo) => {
