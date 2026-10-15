@@ -42,7 +42,7 @@ export default function HomePage() {
   }, []);
 
   // Pilih foto unggulan untuk setiap kategori.
-  const featured = categories
+const featured = categories
   .map((category) => {
     const categoryPhotos = photos.filter(
       (photo) =>
