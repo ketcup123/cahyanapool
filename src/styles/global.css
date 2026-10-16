@@ -1676,3 +1676,412 @@
   line-height: 1.6;
   margin-top: 5px;
 }
+
+
+/* =========================================================
+   CAHYANAPOOL LUXURY ARCHITECTURAL UI UPGRADE
+   Styling-only layer: preserve existing markup and behavior.
+   ========================================================= */
+:root {
+  --luxury-navy: #102b3a;
+  --luxury-aqua: #1ba6a6;
+  --luxury-ivory: #f6f4ef;
+  --luxury-stone: #c5a878;
+  --luxury-muted: #687980;
+  --luxury-line: #d9e0de;
+  --luxury-shadow: 0 22px 65px rgb(16 43 58 / 10%);
+}
+
+body {
+  color: var(--luxury-navy);
+  background: var(--luxury-ivory);
+  text-rendering: optimizeLegibility;
+}
+
+.container {
+  width: min(var(--container), calc(100% - 72px));
+}
+
+.section-pad {
+  padding-block: clamp(76px, 8vw, 120px);
+}
+
+.site-header {
+  background: rgb(246 244 239 / 92%);
+  border-bottom-color: rgb(16 43 58 / 9%);
+  box-shadow: 0 5px 24px rgb(16 43 58 / 3%);
+}
+
+.brand strong {
+  color: var(--luxury-navy);
+  letter-spacing: -0.55px;
+}
+
+.brand small {
+  color: #6e8285;
+  letter-spacing: 1.7px;
+}
+
+.brand-logo {
+  border-radius: 2px;
+}
+
+.main-nav {
+  gap: clamp(18px, 2.4vw, 34px);
+  color: #536970;
+  font-size: 12px;
+}
+
+.main-nav > a:not(.nav-cta):hover,
+.main-nav > a:not(.nav-cta).active {
+  color: var(--luxury-aqua);
+}
+
+.nav-cta,
+.button-primary {
+  background: var(--luxury-navy);
+  color: #fffefa;
+  border-color: var(--luxury-navy);
+}
+
+.nav-cta {
+  padding: 14px 18px;
+}
+
+.nav-cta:hover,
+.button-primary:hover {
+  background: #17485a;
+  border-color: #17485a;
+}
+
+.button {
+  min-height: 48px;
+  padding: 14px 20px;
+  gap: 12px;
+  border-radius: 2px;
+  font-size: 11px;
+  letter-spacing: 0.025em;
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.button-outline {
+  color: var(--luxury-navy);
+  border-color: #9aafb0;
+}
+
+.button-outline:hover {
+  background: #e8f2ef;
+  border-color: var(--luxury-aqua);
+}
+
+.button-quiet:hover {
+  color: var(--luxury-aqua);
+}
+
+.eyebrow,
+.section-index {
+  color: #607a7d;
+}
+
+.eyebrow {
+  letter-spacing: 2px;
+}
+
+.eyebrow-dot {
+  background: var(--luxury-aqua);
+}
+
+.index-line {
+  background: #9bb8b8;
+}
+
+.hero {
+  background: var(--luxury-ivory);
+}
+
+.hero-orb {
+  border-color: rgb(27 166 166 / 13%);
+}
+
+.hero-lines {
+  background: rgb(16 43 58 / 6%);
+}
+
+.hero h1,
+.portfolio-title-row h1 {
+  color: var(--luxury-navy);
+  letter-spacing: -2.4px;
+}
+
+.hero h1 em,
+.intro-copy h2 em,
+.section-heading h2 em,
+.quote-inner em,
+.portfolio-title-row h1 em,
+.portfolio-cta h2 em {
+  color: var(--luxury-aqua);
+}
+
+.hero-copy > p,
+.intro-bottom p,
+.section-heading > p {
+  color: #61747a;
+}
+
+.hero-image-frame {
+  background: #c6ddda;
+  box-shadow: var(--luxury-shadow);
+}
+
+.hero-image-frame img,
+.photo-open img {
+  filter: saturate(0.88) contrast(1.02);
+}
+
+.hero-stamp {
+  background: var(--luxury-navy);
+  color: #fffefa;
+  box-shadow: 0 18px 45px rgb(16 43 58 / 20%);
+}
+
+.hero-bottom {
+  border-top-color: var(--luxury-line);
+  color: #61777d;
+}
+
+.intro-section,
+.featured-section {
+  background: var(--luxury-ivory);
+}
+
+.services-section {
+  background: #eaf0ec;
+}
+
+.intro-copy h2,
+.section-heading h2,
+.service-card h3,
+.contact-copy h2,
+.portfolio-cta h2 {
+  color: var(--luxury-navy);
+}
+
+.services-grid {
+  border-color: #cbd8d5;
+}
+
+.service-card {
+  border-right-color: #cbd8d5;
+}
+
+.service-card-top,
+.service-link:hover {
+  color: var(--luxury-aqua);
+}
+
+.service-card p {
+  color: #63777a;
+}
+
+.service-link {
+  border-top-color: #cbd8d5;
+}
+
+.photo-grid {
+  gap: clamp(18px, 2.2vw, 30px);
+}
+
+.photo-card {
+  min-width: 0;
+}
+
+.photo-open {
+  background: #dce8e4;
+  box-shadow: 0 8px 24px rgb(16 43 58 / 4%);
+}
+
+.photo-open img {
+  transition: transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.photo-open:hover img,
+.photo-open:focus-visible img {
+  transform: scale(1.045);
+}
+
+.photo-open-icon {
+  background: var(--luxury-ivory);
+  color: var(--luxury-navy);
+  border-radius: 2px;
+}
+
+.photo-card-meta {
+  color: #536970;
+}
+
+.underlined-link {
+  border-color: #9bb8b8;
+}
+
+.underlined-link:hover {
+  color: var(--luxury-aqua);
+  border-color: var(--luxury-aqua);
+}
+
+.quote-band {
+  background: var(--luxury-navy);
+  color: #fffefa;
+}
+
+.quote-inner em {
+  color: #8ad8d2;
+}
+
+.quote-leaf {
+  color: #8ad8d2;
+  border-color: rgb(138 216 210 / 45%);
+}
+
+.contact-section,
+.contact-band {
+  background: var(--luxury-navy);
+}
+
+.contact-panel {
+  color: #fffefa;
+}
+
+.contact-copy h2 {
+  color: #fffefa;
+}
+
+.contact-copy p,
+.contact-details {
+  color: #c4d4d6;
+}
+
+.contact-details {
+  border-left-color: #365663;
+}
+
+.contact-details a:hover {
+  color: #8ad8d2;
+}
+
+.footer,
+.site-footer {
+  background: #0b202b;
+  color: #d8e2e2;
+}
+
+.footer-grid,
+.footer-bottom {
+  border-color: #29434d;
+}
+
+.footer a:hover {
+  color: #8ad8d2;
+}
+
+.portfolio-hero {
+  background:
+    radial-gradient(ellipse at 85% 8%, rgb(27 166 166 / 8%), transparent 36%),
+    var(--luxury-ivory);
+}
+
+.portfolio-title-row h1 {
+  color: var(--luxury-navy);
+}
+
+.portfolio-title-row p {
+  color: #61747a;
+}
+
+.scroll-link {
+  color: #587276;
+}
+
+.scroll-link:hover {
+  color: var(--luxury-aqua);
+}
+
+.filter-tabs button {
+  border-radius: 2px;
+  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+
+.filter-tabs button.active {
+  background: var(--luxury-navy);
+  border-color: var(--luxury-navy);
+  color: #fffefa;
+}
+
+.filter-tabs button:not(.active):hover {
+  border-color: var(--luxury-aqua);
+  color: var(--luxury-navy);
+}
+
+.results-count,
+.gallery-footnote {
+  color: #64787b;
+}
+
+.portfolio-cta {
+  border-top-color: var(--luxury-line);
+}
+
+.lightbox {
+  background: rgb(7 22 30 / 96%);
+  backdrop-filter: blur(10px);
+}
+
+.lightbox-arrow,
+.lightbox-close {
+  border-radius: 2px;
+}
+
+.lightbox-arrow:hover,
+.lightbox-close:hover {
+  background: var(--luxury-aqua);
+  color: #fff;
+}
+
+.empty-state,
+.gallery-empty-note {
+  color: #63777a;
+}
+
+.admin-setup-page {
+  background:
+    radial-gradient(ellipse at 90% 0%, rgb(27 166 166 / 8%), transparent 35%),
+    var(--luxury-ivory);
+}
+
+.admin-setup-card {
+  border-color: var(--luxury-line);
+  box-shadow: var(--luxury-shadow);
+}
+
+.admin-setup-icon {
+  background: #e2efeb;
+  color: var(--luxury-navy);
+}
+
+:where(a, button, input, select, textarea):focus-visible {
+  outline: 2px solid var(--luxury-aqua);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: #bce9e5;
+  color: var(--luxury-navy);
+}
