@@ -1,4 +1,4 @@
-import { ArrowUpRight, Instagram, Mail } from 'lucide-react';
+import { ArrowUpRight, Mail } from 'lucide-react';
 
 import { contacts } from '../data/config';
 import { getWhatsAppUrl } from '../services/contactService';
@@ -16,6 +16,21 @@ function MapsIcon() {
       <path fill="#EA4335" d="M4 9h8l-4.8 8.2A12.4 12.4 0 0 1 4 9Z" />
       <circle cx="12" cy="9" r="3" fill="#fff" />
       <circle cx="12" cy="9" r="1.5" fill="#4285F4" />
+    </svg>
+  );
+}
+
+function InstagramIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="none"
+      className="contact-brand-icon contact-brand-icon-instagram"
+    >
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.7" r="1" className="instagram-dot" />
     </svg>
   );
 }
@@ -83,7 +98,7 @@ export default function ContactSection() {
           </a>
 
           <a href={contacts.instagram} target="_blank" rel="noreferrer">
-            <Instagram aria-hidden="true" className="contact-brand-icon contact-brand-icon-instagram" strokeWidth={2.2} />
+            <InstagramIcon />
             Instagram · @cahyanapool
             <ArrowUpRight aria-hidden="true" />
           </a>
