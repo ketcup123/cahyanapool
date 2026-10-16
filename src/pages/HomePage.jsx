@@ -12,18 +12,12 @@ import {
 } from 'lucide-react';
 
 import { photoService } from '../services/photoService';
-import {
-  services,
-  categories,
-  brand,
-} from '../data/config';
+import { services, categories, brand } from '../data/config';
 import { getServiceWhatsApp } from '../services/contactService';
-
 import PhotoGrid from '../components/PhotoGrid';
 import Lightbox from '../components/Lightbox';
 import ContactSection from '../components/ContactSection';
 
-// Ikon untuk masing-masing layanan.
 const serviceIcons = {
   pool: Waves,
   leaf: Leaf,
@@ -36,12 +30,11 @@ export default function HomePage() {
   const [photos, setPhotos] = useState([]);
   const [lightboxIndex, setLightboxIndex] = useState(-1);
 
-  // Ambil foto yang sudah dipublikasikan.
   useEffect(() => {
     photoService.getPublished().then(setPhotos);
   }, []);
 
-  // Pilih foto unggulan berdasarkan kategori masing-masing.
+  // Tetap pilih foto unggulan berdasarkan kategori, lalu hindari duplikasi.
   const featured = categories
     .map((category) => {
       const categoryPhotos = photos.filter(
@@ -51,8 +44,6 @@ export default function HomePage() {
           photo.categories.includes(category.id)
       );
 
-      // Cari foto yang benar-benar unggulan untuk kategori ini.
-      // Jika tidak ada, gunakan foto pertama dalam kategori.
       return (
         categoryPhotos.find(
           (photo) =>
@@ -63,215 +54,129 @@ export default function HomePage() {
         null
       );
     })
-    // Hindari menampilkan foto yang sama dua kali.
     .filter(
       (photo, index, list) =>
         photo &&
-        list.findIndex(
-          (item) => item && item.id === photo.id
-        ) === index
+        list.findIndex((item) => item && item.id === photo.id) === index
     )
     .slice(0, 4);
 
-  // Buka foto yang dipilih di lightbox.
   const openPhoto = (photo) => {
-    const selectedIndex = featured.findIndex(
-      (item) => item.id === photo.id
-    );
-
-    if (selectedIndex !== -1) {
-      setLightboxIndex(selectedIndex);
-    }
+    const selectedIndex = featured.findIndex((item) => item.id === photo.id);
+    if (selectedIndex !== -1) setLightboxIndex(selectedIndex);
   };
 
   return (
     <>
-      {/* ==============================
-          HERO SECTION
-      ============================== */}
-      <section className="hero">
-        <div
-          className="hero-backdrop"
-          aria-hidden="true"
-        >
-          <div className="hero-orb orb-one" />
-          <div className="hero-orb orb-two" />
-          <div className="hero-lines" />
-        </div>
+      <section className="editorial-hero">
+        <img
+          className="editorial-hero-image"
+          src="/images/herosection.jpg"
+          alt="Kolam renang dan lanskap taman CahyanaPool"
+          fetchPriority="high"
+        />
+        <div className="editorial-hero-shade" aria-hidden="true" />
 
-        <div className="container hero-inner">
-          <div className="hero-copy">
-            <span className="eyebrow">
-              <span className="eyebrow-dot" />
-              KAMI MEMBANGUN DARI {brand.since}
-            </span>
-
-            <h1>
-              Creating Spaces.
-              <br />
-              <em>Inspiring Living.</em>
-            </h1>
-
-            <p>
-              Maksimalkan potensi hunian Anda dengan ruang luar yang indah, nyaman, dan fungsional.
-            </p>
-
-            <div className="hero-actions">
-              <Link
-                className="button button-primary"
-                to="/portofolio"
-              >
-                Jelajahi portofolio
-                <ArrowUpRight size={18} />
-              </Link>
-
-              <a
-                className="button button-quiet"
-                href="#layanan"
-              >
-                Kenali layanan
-                <ArrowDown size={16} />
-              </a>
-            </div>
-
-            <div className="hero-footnote">
-              <span className="hero-footnote-line" />
-              Ide baik dimulai dari ruang yang terasa tepat.
-            </div>
+        <div className="editorial-hero-content">
+          <div className="editorial-kicker">
+            <span className="editorial-kicker-line" />
+            WATER · LANDSCAPE · LIVING
           </div>
-
-          {/* Gambar utama */}
-          <div className="hero-art">
-            <div className="hero-image-frame">
-              <img
-                src="/images/herosection.jpg"
-                alt="Kolam renang dan lanskap taman CahyanaPool"
-                fetchPriority="high"
-              />
-
-              <div className="image-label">
-                <span>01 / NATURAL LIVING</span>
-              </div>
-            </div>
-
-            <div className="hero-stamp">
-              <span>Ruang luar,</span>
-              <strong>lebih hidup.</strong>
-              <Leaf size={23} />
-            </div>
-
-            <div className="hero-side-note">
-              AIR · TANAMAN · RUANG
-            </div>
+          <p className="editorial-overline">CRAFTED WITH EXPERIENCE SINCE {brand.since}</p>
+          <h1>
+            Where water meets
+            <em>the art of living.</em>
+          </h1>
+          <p className="editorial-hero-description">
+            Kami merancang, membangun, dan merawat ruang air serta lanskap
+            yang menyatu dengan cara Anda hidup.
+          </p>
+          <div className="editorial-hero-actions">
+            <Link className="editorial-button editorial-button-light" to="/portofolio">
+              Jelajahi karya kami <ArrowUpRight size={17} />
+            </Link>
+            <a className="editorial-text-link" href="#cerita">
+              Kenali CahyanaPool <ArrowDown size={15} />
+            </a>
           </div>
         </div>
 
-        <div className="container hero-bottom">
-          <span>Kolam · Taman · Renovasi</span>
-
-          <span className="scroll-cue">
-            SCROLL UNTUK MENJELAJAHI
-            <ArrowDown size={14} />
-          </span>
+        <div className="editorial-hero-index" aria-hidden="true">
+          <span>01</span>
+          <span className="editorial-index-rule" />
+          <span>EST. {brand.since}</span>
+        </div>
+        <div className="editorial-hero-caption">
+          <span>RUANG YANG DIRANCANG UNTUK DINIKMATI</span>
+          <span>SCROLL TO DISCOVER ↓</span>
         </div>
       </section>
 
-      {/* ==============================
-          TENTANG CAHYANAPOOL
-      ============================== */}
-      <section className="intro-section section-pad">
-        <div className="container intro-grid">
-          <div className="section-index">
-            <span>01</span>
-            <span className="index-line" />
-            TENTANG KAMI
+      <section className="editorial-intro section-pad" id="cerita">
+        <div className="container editorial-intro-layout">
+          <div className="editorial-section-label">
+            <span className="editorial-number">01</span>
+            <span className="editorial-label-rule" />
+            <span>SEBUAH PENGALAMAN</span>
           </div>
-
-          <div className="intro-copy">
+          <div className="editorial-intro-main">
+            <p className="editorial-overline">LEBIH DARI SEKADAR KOLAM</p>
             <h2>
-              Bringing Water, Nature, and Architecture Together to Create{' '}
-              <em>Extraordinary Spaces.</em>
+              We shape spaces.
+              <br />
+              <em>You make them yours.</em>
             </h2>
-
-            <div className="intro-bottom">
+            <div className="editorial-intro-bottom">
               <p>
-                Sejak 1993, kami telah menghadirkan solusi menyeluruh untuk kolam renang dan taman, mulai dari perencanaan desain, pembangunan, perawatan, hingga renovasi. Dengan mengutamakan kualitas pengerjaan dan perhatian terhadap setiap detail, kami berkomitmen menciptakan serta menjaga ruang yang indah, fungsional, dan tahan lama.
+                Sejak {brand.since}, CahyanaPool menghadirkan solusi menyeluruh
+                untuk kolam renang dan taman—dari perencanaan, pembangunan,
+                perawatan, hingga renovasi. Setiap detail dikerjakan dengan
+                perhatian pada fungsi, ketahanan, dan rasa nyaman.
               </p>
-
-              <span className="intro-mark">
-                <Leaf size={28} />
-              </span>
+              <div className="editorial-experience">
+                <strong>{brand.since}</strong>
+                <span>TAHUN MEMBANGUN<br />RUANG YANG BERARTI</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ==============================
-          LAYANAN
-      ============================== */}
-      <section
-        className="services-section section-pad"
-        id="layanan"
-      >
+      <section className="editorial-services section-pad" id="layanan">
         <div className="container">
-          <div className="section-heading">
+          <div className="editorial-section-heading">
             <div>
-              <div className="section-index">
-                <span>02</span>
-                <span className="index-line" />
-                YANG KAMI KERJAKAN
+              <div className="editorial-section-label">
+                <span className="editorial-number">02</span>
+                <span className="editorial-label-rule" />
+                KEAHLIAN KAMI
               </div>
-
-              <h2>
-                Bring Ideas to Life
-                <br />
-                <em>See What’s Possible.</em>
-              </h2>
+              <h2>Considered in every detail.<br /><em>Built to be lived in.</em></h2>
             </div>
-
-            <p>
-              Dari ide sederhana hingga transformasi menyeluruh, jelajahi kemungkinan yang bisa diwujudkan.
-            </p>
+            <p>Dari elemen air hingga lanskap, setiap layanan dirancang untuk bekerja sebagai satu kesatuan.</p>
           </div>
 
-          <div className="services-grid">
+          <div className="editorial-service-list">
             {services.map((service, index) => {
-              const Icon =
-                serviceIcons[service.icon] || Leaf;
-
-              const href = getServiceWhatsApp(
-                service.category
-              );
+              const Icon = serviceIcons[service.icon] || Leaf;
+              const href = getServiceWhatsApp(service.category);
 
               return (
-                <article
-                  className="service-card"
-                  key={service.title}
-                >
-                  <div className="service-card-top">
-                    <span>
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
-
-                    <Icon
-                      size={25}
-                      strokeWidth={1.5}
-                    />
+                <article className="editorial-service-row" key={service.title}>
+                  <span className="editorial-service-number">{String(index + 1).padStart(2, '0')}</span>
+                  <div className="editorial-service-icon"><Icon size={26} strokeWidth={1.3} /></div>
+                  <div className="editorial-service-copy">
+                    <h3>{service.title}</h3>
+                    <p>{service.description}</p>
                   </div>
-
-                  <h3>{service.title}</h3>
-
-                  <p>{service.description}</p>
-
                   <a
+                    className="editorial-service-action"
                     href={href || '#kontak'}
                     target={href ? '_blank' : undefined}
                     rel={href ? 'noreferrer' : undefined}
-                    className="service-link"
                     aria-label={`Tanya tentang ${service.title}`}
                   >
-                    Tanyakan layanan
-                    <ArrowUpRight size={17} />
+                    <span>Konsultasikan</span><ArrowUpRight size={20} />
                   </a>
                 </article>
               );
@@ -280,78 +185,48 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ==============================
-          PORTOFOLIO UNGGULAN
-      ============================== */}
-      <section className="featured-section section-pad">
+      <section className="editorial-work section-pad">
         <div className="container">
-          <div className="section-heading featured-heading">
+          <div className="editorial-work-heading">
             <div>
-              <div className="section-index">
-                <span>03</span>
-                <span className="index-line" />
-                JELAJAHI GALERI KAMI
+              <div className="editorial-section-label">
+                <span className="editorial-number">03</span>
+                <span className="editorial-label-rule" />
+                PILIHAN KARYA
               </div>
-
-              <h2>
-                See Ideas 
-                <em> Come Alive.</em>
-              </h2>
+              <h2>Spaces made<br /><em>to stay with you.</em></h2>
             </div>
-
-            <Link
-              className="underlined-link"
-              to="/portofolio"
-            >
-              Lihat semua
-              <ArrowUpRight size={17} />
-            </Link>
+            <div className="editorial-work-aside">
+              <p>Setiap proyek punya karakter. Temukan inspirasi dari karya yang telah kami bangun.</p>
+              <Link className="editorial-inline-link" to="/portofolio">Lihat seluruh portofolio <ArrowUpRight size={17} /></Link>
+            </div>
           </div>
 
           {featured.length > 0 ? (
-            <PhotoGrid
-              photos={featured}
-              onSelect={openPhoto}
-            />
+            <PhotoGrid photos={featured} onSelect={openPhoto} variant="editorial" />
           ) : (
             <div className="empty-state">
-              <h3>Belum ada foto portofolio</h3>
-
-              <p>
-                Foto proyek CahyanaPool akan ditampilkan di bagian ini.
-              </p>
+              <h3>Portofolio sedang disiapkan</h3>
+              <p>Dokumentasi proyek CahyanaPool akan tampil di sini.</p>
             </div>
           )}
         </div>
       </section>
 
-      {/* ==============================
-          QUOTE SECTION
-      ============================== */}
-      <section className="quote-band">
-        <div className="container quote-inner">
-          <span className="quote-mark">“</span>
-
-          <p>
-            A beautiful space is more than what you see.
-            <br />
-            <em>It's what you feel every time you step into it.</em>
-          </p>
-
-          <span className="quote-leaf">
-            <Droplets size={25} />
-          </span>
+      <section className="editorial-manifesto">
+        <div className="container editorial-manifesto-inner">
+          <span className="editorial-manifesto-mark">“</span>
+          <p>A space is not just seen.<br /><em>It is felt, lived, and remembered.</em></p>
+          <div className="editorial-manifesto-footer">
+            <span>CAHYANAPOOL</span>
+            <span>RUANG AIR, RUANG TUMBUH.</span>
+          </div>
+          <Droplets className="editorial-manifesto-icon" size={30} strokeWidth={1.2} />
         </div>
       </section>
 
-      {/* ==============================
-          KONTAK
-      ============================== */}
       <ContactSection />
 
-      {/* ==============================
-          LIGHTBOX FOTO
-      ============================== */}
       <Lightbox
         photos={featured}
         index={lightboxIndex}

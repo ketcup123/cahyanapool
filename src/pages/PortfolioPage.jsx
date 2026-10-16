@@ -20,82 +20,70 @@ export default function PortfolioPage() {
   const [visibleCount, setVisibleCount] = useState(6);
   const [lightboxIndex, setLightboxIndex] = useState(-1);
 
-  // Memuat foto yang berstatus Published.
   useEffect(() => {
     photoService.getPublished().then(setPhotos);
   }, []);
 
-  // Memfilter foto berdasarkan kategori yang dipilih.
   const filtered = useMemo(() => {
-    if (filter === 'all') {
-      return photos;
-    }
-
-    return photos.filter((photo) =>
-      photo.categories.includes(filter)
-    );
+    if (filter === 'all') return photos;
+    return photos.filter((photo) => photo.categories.includes(filter));
   }, [photos, filter]);
 
-  // Membatasi jumlah foto yang ditampilkan.
   const visible = filtered.slice(0, visibleCount);
 
-  // Membuka lightbox pada foto yang dipilih.
   const selectPhoto = (photo) => {
-    const index = visible.findIndex(
-      (item) => item.id === photo.id
-    );
-
+    const index = visible.findIndex((item) => item.id === photo.id);
     setLightboxIndex(index);
   };
 
-  // Mengubah kategori dan mengatur ulang galeri.
   const changeFilter = (id) => {
     setFilter(id);
     setVisibleCount(6);
     setLightboxIndex(-1);
   };
 
-  // Mengubah indeks foto di dalam lightbox.
   const changeLightbox = useCallback((next) => {
     setLightboxIndex(next);
   }, []);
 
   return (
     <>
-      {/* Hero portofolio */}
-      <section className="portfolio-hero">
+      <section className="portfolio-hero editorial-portfolio-hero">
         <div className="container">
-          <div className="section-index">
-            <span>04</span>
-            <span className="index-line" />
-            GALERI KAMI
+          <div className="editorial-section-label">
+            <span className="editorial-number">04</span>
+            <span className="editorial-label-rule" />
+            PORTOFOLIO · CAHYANAPOOL
           </div>
 
-          <div className="portfolio-title-row">
-            <h1>
-              Every Space
-              <br />
-              <em>Tells a Story.</em>
-            </h1>
-
-            <p>
-              Jelajahi dokumentasi pekerjaan kolam renang, kolam ikan,
-              taman, dan renovasi CahyanaPool.
-            </p>
+          <div className="portfolio-title-row editorial-portfolio-title-row">
+            <div>
+              <p className="editorial-overline">BUILT WITH PURPOSE. MADE TO LAST.</p>
+              <h1>
+                A collection of
+                <br />
+                <em>lived-in dreams.</em>
+              </h1>
+            </div>
+            <div className="editorial-portfolio-summary">
+              <p>
+                Dari kolam renang yang tenang hingga lanskap yang menyatu dengan
+                arsitektur, setiap proyek punya cerita dan karakternya sendiri.
+              </p>
+              <a href="#galeri" className="editorial-inline-link">
+                Jelajahi koleksi <ArrowDown size={16} />
+              </a>
+            </div>
           </div>
 
-          <a href="#galeri" className="scroll-link">
-            JELAJAHI 
-            <ArrowDown size={15} />
-          </a>
+          <div className="editorial-portfolio-foot">
+            <span>KOLEKSI PROYEK TERPILIH</span>
+            <span>EST. 1993 · INDONESIA</span>
+          </div>
         </div>
       </section>
 
-      {/* Galeri dan filter kategori */}
-      <section
-        className="portfolio-section section-pad"
-        id="galeri"
-      >
+      <section className="portfolio-section section-pad" id="galeri">
         <div className="container">
           <div className="portfolio-toolbar">
             <div
@@ -107,94 +95,58 @@ export default function PortfolioPage() {
                 className={filter === 'all' ? 'active' : ''}
                 onClick={() => changeFilter('all')}
               >
-                Semua
-                <span>{photos.length}</span>
+                Semua <span>{photos.length}</span>
               </button>
-
               {categories.map((cat) => (
                 <button
                   key={cat.id}
-                  className={
-                    filter === cat.id ? 'active' : ''
-                  }
+                  className={filter === cat.id ? 'active' : ''}
                   onClick={() => changeFilter(cat.id)}
                 >
                   {cat.label}
                 </button>
               ))}
             </div>
-
-            <span className="results-count">
-              {filtered.length} FOTO
-            </span>
+            <span className="results-count">{filtered.length} FOTO</span>
           </div>
 
-          {/* Daftar foto */}
-          <PhotoGrid
-            photos={visible}
-            onSelect={selectPhoto}
-          />
+          <PhotoGrid photos={visible} onSelect={selectPhoto} variant="editorial" />
 
-          {/* Tombol untuk menampilkan foto berikutnya */}
           {visibleCount < filtered.length && (
             <div className="load-more-wrap">
               <button
                 className="button button-outline"
-                onClick={() =>
-                  setVisibleCount((count) => count + 6)
-                }
+                onClick={() => setVisibleCount((count) => count + 6)}
               >
-                Muat foto berikutnya
-                <ArrowDown size={17} />
+                Muat foto berikutnya <ArrowDown size={17} />
               </button>
             </div>
           )}
 
-          {/* Pesan ketika galeri kosong */}
           {!filtered.length && (
-            <p className="gallery-empty-note">
-              Belum ada foto untuk kategori ini.
-            </p>
+            <p className="gallery-empty-note">Belum ada foto untuk kategori ini.</p>
           )}
 
-          {/* Informasi galeri */}
           <div className="gallery-footnote">
             <span className="footnote-line" />
-
-            <span>
-              Dokumentasi proyek Kami
-            </span>
-
-            <span className="gallery-count">
-              {visible.length} / {filtered.length}
-            </span>
+            <span>Dokumentasi proyek CahyanaPool</span>
+            <span className="gallery-count">{visible.length} / {filtered.length}</span>
           </div>
         </div>
       </section>
 
-      {/* Ajakan menghubungi CahyanaPool */}
       <div className="portfolio-cta container">
         <div>
-          <span className="eyebrow">MERASA TERTARIK?</span>
-
-          <h2>
-            Diskusikan dengan Kami.
-          </h2>
+          <span className="eyebrow">PUNYA RENCANA?</span>
+          <h2>Ruang berikutnya<br /><em>bisa dimulai di sini.</em></h2>
         </div>
-
-        <a
-          className="button button-primary"
-          href="#kontak"
-        >
-          Bicarakan ide
-          <ArrowUpRight size={18} />
+        <a className="button button-primary" href="#kontak">
+          Bicarakan ide <ArrowUpRight size={18} />
         </a>
       </div>
 
-      {/* Informasi kontak */}
       <ContactSection />
 
-      {/* Tampilan foto dalam lightbox */}
       <Lightbox
         photos={visible}
         index={lightboxIndex}

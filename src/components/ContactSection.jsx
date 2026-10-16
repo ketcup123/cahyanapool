@@ -63,7 +63,6 @@ export default function ContactSection() {
             TikTok · @inialosha
             <ArrowUpRight />
           </a>
-
         </div>
       </div>
     </section>
