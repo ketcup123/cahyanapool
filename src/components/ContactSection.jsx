@@ -1,11 +1,27 @@
 import {
   ArrowUpRight,
   Mail,
-  MapPin,
 } from 'lucide-react';
 
 import { contacts } from '../data/config';
 import { getWhatsAppUrl } from '../services/contactService';
+
+function MapsIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="contact-brand-icon contact-brand-icon-maps"
+    >
+      <path fill="#34A853" d="M12 22s8-7.16 8-13a8 8 0 1 0-16 0c0 5.84 8 13 8 13Z" />
+      <path fill="#4285F4" d="M4.3 4.4A8 8 0 0 1 17.7 3L12 9H4a8 8 0 0 1 .3-4.6Z" />
+      <path fill="#FBBC04" d="M17.7 3A8 8 0 0 1 20 9h-8l5.7-6Z" />
+      <path fill="#EA4335" d="M4 9h8l-4.8 8.2A12.4 12.4 0 0 1 4 9Z" />
+      <circle cx="12" cy="9" r="3" fill="#fff" />
+      <circle cx="12" cy="9" r="1.5" fill="#4285F4" />
+    </svg>
+  );
+}
 
 function InstagramIcon() {
   return (
@@ -79,7 +95,7 @@ export default function ContactSection() {
             target="_blank"
             rel="noreferrer"
           >
-            <MapPin aria-hidden="true" />
+            <MapsIcon />
             {contacts.address}
             <ArrowUpRight aria-hidden="true" />
           </a>
