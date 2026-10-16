@@ -1,58 +1,13 @@
-import { ArrowUpRight, Mail } from 'lucide-react';
+import {
+  ArrowUpRight,
+  Mail,
+  MapPin,
+  Camera,
+  Music2,
+} from 'lucide-react';
 
 import { contacts } from '../data/config';
 import { getWhatsAppUrl } from '../services/contactService';
-
-function MapsIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 24 24"
-      className="contact-brand-icon contact-brand-icon-maps"
-    >
-      <path fill="#34A853" d="M12 22s8-7.16 8-13a8 8 0 1 0-16 0c0 5.84 8 13 8 13Z" />
-      <path fill="#4285F4" d="M4.3 4.4A8 8 0 0 1 17.7 3L12 9H4a8 8 0 0 1 .3-4.6Z" />
-      <path fill="#FBBC04" d="M17.7 3A8 8 0 0 1 20 9h-8l5.7-6Z" />
-      <path fill="#EA4335" d="M4 9h8l-4.8 8.2A12.4 12.4 0 0 1 4 9Z" />
-      <circle cx="12" cy="9" r="3" fill="#fff" />
-      <circle cx="12" cy="9" r="1.5" fill="#4285F4" />
-    </svg>
-  );
-}
-
-function InstagramIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 24 24"
-      fill="none"
-      className="contact-brand-icon contact-brand-icon-instagram"
-    >
-      <rect x="3" y="3" width="18" height="18" rx="5" />
-      <circle cx="12" cy="12" r="4" />
-      <circle cx="17.5" cy="6.7" r="1" className="instagram-dot" />
-    </svg>
-  );
-}
-
-function TikTokIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 24 24"
-      className="contact-brand-icon contact-brand-icon-tiktok"
-    >
-      <path
-        className="tiktok-shadow"
-        d="M15.5 3h-3.2v11.2a3.1 3.1 0 1 1-2.7-3.1V7.8a6.4 6.4 0 1 0 6.1 6.4V8.7a8.1 8.1 0 0 0 4.1 1.1V6.5A4.9 4.9 0 0 1 15.5 3Z"
-      />
-      <path
-        className="tiktok-main"
-        d="M14.2 2h-3.1v11.2a3.1 3.1 0 1 1-2.7-3.1V6.8a6.4 6.4 0 1 0 6.1 6.4V7.7a8.1 8.1 0 0 0 4.1 1.1V5.5A4.9 4.9 0 0 1 14.2 2Z"
-      />
-    </svg>
-  );
-}
 
 export default function ContactSection() {
   const mainWhatsApp = getWhatsAppUrl('main');
@@ -82,9 +37,9 @@ export default function ContactSection() {
           <h3>Informasi Kontak</h3>
 
           <a href={`mailto:${contacts.email}`}>
-            <Mail aria-hidden="true" />
+            <Mail />
             {contacts.email}
-            <ArrowUpRight aria-hidden="true" />
+            <ArrowUpRight />
           </a>
 
           <a
@@ -92,21 +47,21 @@ export default function ContactSection() {
             target="_blank"
             rel="noreferrer"
           >
-            <MapsIcon />
+            <MapPin />
             {contacts.address}
-            <ArrowUpRight aria-hidden="true" />
+            <ArrowUpRight />
           </a>
 
           <a href={contacts.instagram} target="_blank" rel="noreferrer">
-            <InstagramIcon />
+            <Camera />
             Instagram · @cahyanapool
-            <ArrowUpRight aria-hidden="true" />
+            <ArrowUpRight />
           </a>
 
           <a href={contacts.tiktok} target="_blank" rel="noreferrer">
-            <TikTokIcon />
+            <Music2 />
             TikTok · @inialosha
-            <ArrowUpRight aria-hidden="true" />
+            <ArrowUpRight />
           </a>
         </div>
       </div>
