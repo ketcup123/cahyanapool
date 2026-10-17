@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import {
   ArrowDown,
   ArrowUpRight,
-  Droplets,
   Leaf,
   RefreshCw,
   Sprout,
@@ -13,7 +12,7 @@ import {
 
 import { photoService } from '../services/photoService';
 import { services, categories, brand } from '../data/config';
-import { getServiceWhatsApp } from '../services/contactService';
+import { getServiceWhatsApp, getWhatsAppUrl } from '../services/contactService';
 import PhotoGrid from '../components/PhotoGrid';
 import Lightbox from '../components/Lightbox';
 import ContactSection from '../components/ContactSection';
@@ -213,15 +212,72 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="editorial-manifesto">
-        <div className="container editorial-manifesto-inner">
-          <span className="editorial-manifesto-mark">“</span>
-          <p>A space is not just seen.<br /><em>It is felt, lived, and remembered.</em></p>
-          <div className="editorial-manifesto-footer">
-            <span>CAHYANAPOOL</span>
-            <span>RUANG AIR, RUANG TUMBUH.</span>
+      <section className="editorial-faq section-pad" id="faq">
+        <div className="container editorial-faq-layout">
+          <div className="editorial-faq-intro">
+            <div className="editorial-section-label">
+              <span className="editorial-number">04</span>
+              <span className="editorial-label-rule" />
+              INFORMASI PENTING
+            </div>
+            <p className="editorial-overline">SEBELUM MEMULAI PROYEK</p>
+            <h2>Pertanyaan yang sering <em>diajukan.</em></h2>
+            <p className="editorial-faq-description">
+              Informasi penting untuk membantu Anda melangkah dengan lebih yakin
+              sebelum berdiskusi bersama CahyanaPool.
+            </p>
+            <a
+              className="editorial-button editorial-button-dark"
+              href={getWhatsAppUrl('main') || '#kontak'}
+              target={getWhatsAppUrl('main') ? '_blank' : undefined}
+              rel={getWhatsAppUrl('main') ? 'noreferrer' : undefined}
+            >
+              Diskusikan proyek Anda <ArrowUpRight size={17} />
+            </a>
           </div>
-          <Droplets className="editorial-manifesto-icon" size={30} strokeWidth={1.2} />
+
+          <div className="editorial-faq-list">
+            {[
+              {
+                question: 'Berapa biaya pembuatan kolam renang?',
+                answer:
+                  'Biaya bergantung pada ukuran dan desain kolam, kondisi lokasi, serta spesifikasi material dan pekerjaan. Hubungi CahyanaPool melalui WhatsApp untuk mendiskusikan kebutuhan proyek dan mendapatkan estimasi biaya yang sesuai.',
+              },
+              {
+                question: 'Layanan apa saja yang tersedia di CahyanaPool?',
+                answer:
+                  'CahyanaPool melayani pembangunan kolam renang baru, renovasi, perbaikan kerusakan, servis pompa dan sistem filtrasi, serta perawatan kolam renang.',
+              },
+              {
+                question: 'Apakah CahyanaPool melayani proyek di luar kota?',
+                answer:
+                  'CahyanaPool melayani proyek di seluruh Indonesia sesuai kesepakatan. Pelaksanaan proyek dibahas berdasarkan lokasi, jenis pekerjaan, dan kebutuhan di lapangan.',
+              },
+              {
+                question: 'Apakah CahyanaPool bisa memperbaiki kolam yang bocor atau rusak?',
+                answer:
+                  'Ya, CahyanaPool melayani renovasi dan perbaikan kolam renang. Jenis penanganan ditentukan berdasarkan kondisi kolam dan sumber masalah. Foto atau video kondisi kolam dapat membantu penilaian awal.',
+              },
+              {
+                question: 'Apakah pekerjaan CahyanaPool dilengkapi garansi?',
+                answer:
+                  'Tersedia garansi dengan ketentuan sesuai pekerjaan yang disepakati. Cakupan, masa berlaku, dan persyaratan garansi dikonfirmasi sebelum pekerjaan dimulai.',
+              },
+            ].map((item, index) => (
+              <details className="editorial-faq-item" key={item.question}>
+                <summary>
+                  <span className="editorial-faq-number">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span className="editorial-faq-question">{item.question}</span>
+                  <span className="editorial-faq-toggle" aria-hidden="true" />
+                </summary>
+                <div className="editorial-faq-answer">
+                  <p>{item.answer}</p>
+                </div>
+              </details>
+            ))}
+          </div>
         </div>
       </section>
 
