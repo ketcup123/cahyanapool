@@ -221,19 +221,11 @@ export default function HomePage() {
               INFORMASI PENTING
             </div>
             <p className="editorial-overline">SEBELUM MEMULAI PROYEK</p>
-            <h2>Pertanyaan yang sering <em>diajukan.</em></h2>
+            <h2>A Few Things to <em>Know.</em></h2>
             <p className="editorial-faq-description">
               Informasi penting untuk membantu Anda melangkah dengan lebih yakin
               sebelum berdiskusi bersama CahyanaPool.
             </p>
-            <a
-              className="editorial-button editorial-button-dark"
-              href={getWhatsAppUrl('main') || '#kontak'}
-              target={getWhatsAppUrl('main') ? '_blank' : undefined}
-              rel={getWhatsAppUrl('main') ? 'noreferrer' : undefined}
-            >
-              Diskusikan proyek Anda <ArrowUpRight size={17} />
-            </a>
           </div>
 
           <div className="editorial-faq-list">
