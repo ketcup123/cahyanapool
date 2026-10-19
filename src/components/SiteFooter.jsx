@@ -1,79 +1,57 @@
 import { Link } from 'react-router-dom';
-import {
-  Leaf,
-  ArrowUpRight,
-} from 'lucide-react';
+import { ArrowUpRight, Mail, MapPin, MessageCircle } from 'lucide-react';
 
-import { brand } from '../data/config';
+import { brand, contacts } from '../data/config';
+import { getWhatsAppUrl } from '../services/contactService';
 
 export default function SiteFooter() {
-  const currentYear = new Date().getFullYear();
+  const year = new Date().getFullYear();
+  const whatsapp = getWhatsAppUrl('main');
 
   return (
     <footer className="site-footer">
       <div className="container footer-grid">
-        {/* Identitas CahyanaPool */}
         <div className="footer-intro">
-          <Link
-            to="/"
-            className="brand footer-brand"
-          >
-            <span className="brand-mark">
-              <Leaf size={22} />
-            </span>
-
+          <Link to="/" className="brand footer-brand" aria-label={`${brand.name} beranda`}>
+            <img src="/images/logokali.jpeg" alt="" className="brand-logo" />
             <span>
               <strong>{brand.name}</strong>
-
-              <small>
-                KOLAM · TAMAN · KEHIDUPAN
-              </small>
+              <small>KOLAM · TAMAN · KEHIDUPAN</small>
             </span>
           </Link>
-
           <p>
-            Ruang air yang tenang, taman yang hidup,
-            dan ruang luar yang terasa dekat dengan alam.
+            Ruang air yang tenang, taman yang hidup, dan ruang luar yang terasa
+            dekat dengan alam.
           </p>
         </div>
 
-        {/* Navigasi website */}
-        <div className="footer-navigation">
+        <nav className="footer-navigation" aria-label="Navigasi footer">
           <h3>Jelajahi</h3>
+          <Link to="/">Beranda</Link>
+          <Link to="/portofolio">Portofolio</Link>
+          <a href="/#layanan">Layanan</a>
+          <a href="/#faq">Pertanyaan umum</a>
+        </nav>
 
-          <Link to="/">
-            Beranda
-          </Link>
-
-          <Link to="/portofolio">
-            Portofolio
-          </Link>
-
-          <a href="/#layanan">
-            Layanan
-          </a>
-        </div>
-
-        {/* Kontak */}
         <div className="footer-contact">
           <h3>Mulai percakapan</h3>
-
-          <a href="/#kontak">
-            Kontak CahyanaPool
-            <ArrowUpRight size={15} />
+          {whatsapp && (
+            <a href={whatsapp} target="_blank" rel="noreferrer">
+              <MessageCircle size={16} /> Chat WhatsApp <ArrowUpRight size={15} />
+            </a>
+          )}
+          <a href={`mailto:${contacts.email}`}>
+            <Mail size={16} /> {contacts.email}
           </a>
-
-          <p className="footer-note">
-            Kolam renang, kolam ikan, taman, dan renovasi.
-          </p>
+          <span className="footer-line">
+            <MapPin size={16} /> {contacts.address}
+          </span>
+          <p className="footer-note">Kolam renang, kolam ikan, taman, dan renovasi.</p>
         </div>
       </div>
 
-      {/* Informasi bagian bawah footer */}
       <div className="container footer-bottom">
-        <span>
-          © {currentYear} CahyanaPool
-        </span>
+        <span>© {year} {brand.name}. Berdiri sejak {brand.since}.</span>
       </div>
     </footer>
   );
