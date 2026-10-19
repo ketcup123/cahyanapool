@@ -1,0 +1,99 @@
+/* Polish layer: dimuat terakhir. Palet tidak berubah (navy, teal, cream, sage). */
+:root{--teal-text:#177f83;--ink-soft:#4d666b;--ink-mute:#5b7176;--hair:#cbd8d5}
+
+/* Alignment: konten hero memakai lebar container yang sama dengan section lain */
+.editorial-hero-content{width:min(var(--container),calc(100% - 72px))}
+.editorial-hero-caption{left:50%;right:auto;width:min(var(--container),calc(100% - 72px));transform:translateX(-50%)}
+.editorial-hero h1{letter-spacing:-.04em;line-height:1.02;text-wrap:balance}
+.editorial-hero-description{font-size:16px;line-height:1.75;max-width:480px}
+
+/* Tipografi: tidak ada teks isi di bawah 13px, label minimal 11px */
+.editorial-kicker,.editorial-overline,.editorial-section-label,.editorial-hero-caption,
+.editorial-portfolio-foot,.results-count,.editorial-experience span{font-size:11px;letter-spacing:.14em}
+.editorial-number{color:var(--ink-mute)}
+.editorial-label-rule{background:var(--ink-mute);opacity:.5}
+.editorial-intro-bottom>p,.editorial-section-heading>p,.editorial-work-aside>p,
+.editorial-portfolio-summary>p,.editorial-faq-description{font-size:15px;line-height:1.8;color:var(--ink-soft)}
+.editorial-service-copy p{font-size:14px;line-height:1.7;color:var(--ink-soft)}
+.editorial-service-number{font-size:12px;color:var(--ink-mute)}
+.editorial-service-action,.editorial-inline-link,.editorial-text-link,.editorial-button{font-size:13px}
+.editorial-faq-answer p{font-size:15px;line-height:1.8;color:var(--ink-soft)}
+.editorial-faq-number{font-size:12px;color:var(--ink-mute)}
+.editorial-faq-answer{padding-right:48px}
+.photo-card-meta,.photo-grid--editorial .photo-card-meta{font-size:12px;color:var(--ink-soft)}
+.photo-grid--editorial .photo-card-meta>span:first-child{font-size:11px;color:var(--teal-text);letter-spacing:.12em}
+
+/* Header */
+.site-header{height:80px;background:rgb(246 244 239/90%);backdrop-filter:saturate(1.4) blur(18px)}
+.brand small{font-size:10px;letter-spacing:.16em;color:var(--ink-mute)}
+.main-nav{font-size:14px;gap:clamp(20px,2.6vw,36px);color:var(--ink-soft)}
+.main-nav>a:not(.nav-cta){position:relative;padding-block:8px}
+.main-nav>a:not(.nav-cta)::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+.main-nav>a:not(.nav-cta):hover::after,.main-nav>a.active::after{transform:scaleX(1)}
+.main-nav>a.active{color:#102b3a}
+.nav-cta{font-size:13px;min-height:44px;border-radius:2px}
+
+/* Tombol dan target sentuh >= 44px */
+.button,.editorial-button{min-height:48px;font-size:13px;border-radius:2px}
+.editorial-button-light:hover{background:#b7e2dc}
+.filter-tabs button{min-height:44px;font-size:13px;padding:10px 16px}
+.filter-tabs button:not(.active){border-color:var(--hair);color:var(--ink-soft)}
+.filter-tabs button:not(.active):hover{border-color:#1ba6a6;color:#102b3a}
+
+/* Layanan */
+.editorial-service-row{grid-template-columns:44px 56px minmax(0,1fr) 190px;padding-block:30px}
+.editorial-service-row:hover{background:rgb(255 255 255/55%)}
+.editorial-service-icon{border-color:#a9c4be}
+
+/* Galeri: ritme editorial tanpa margin negatif yang bikin caption bertabrakan */
+.photo-grid--editorial{row-gap:56px}
+.photo-grid--editorial .photo-card:nth-child(4n+3){margin-top:0}
+.photo-grid--editorial .photo-card:nth-child(4n+4){margin-top:40px}
+.photo-grid--editorial .photo-open{box-shadow:0 18px 50px rgb(16 43 58/10%);border-radius:2px}
+.photo-open:focus-visible{outline:2px solid #1ba6a6;outline-offset:4px}
+
+/* Kontak */
+.contact-copy>p{font-size:16px;line-height:1.75;color:#c9d9db;max-width:460px}
+.contact-details{gap:6px}
+.contact-details h3{margin-bottom:12px}
+.contact-details>a{font-size:14px;min-height:48px;padding-block:10px;border-bottom:1px solid #2c4a58;width:100%;transition:color .2s,padding .2s}
+.contact-details>a:hover{padding-left:6px}
+.contact-details>a svg:last-child{margin-left:auto;opacity:.6}
+
+/* WhatsApp mengambang: ikut palet navy, bukan hijau lama */
+.whatsapp-float{background:#102b3a;border:1px solid rgb(138 216 210/45%);font-size:13px;min-height:48px;box-shadow:0 14px 34px rgb(16 43 58/35%)}
+.whatsapp-float svg{color:#8bd8cf}
+.whatsapp-float.is-unconfigured{background:#3c5560}
+
+/* Footer baru */
+.site-footer{background:#0b202b;color:#d3e0e0}
+.footer-grid{grid-template-columns:1.4fr .7fr 1.1fr;padding:72px 0 56px}
+.footer-brand .brand-logo{width:52px;height:52px}
+.footer-brand strong{color:#fffefa;font-size:20px}
+.footer-brand small{color:#9fb6b8}
+.footer-grid>div:first-child>p{font-size:14px;line-height:1.75;color:#aebfc1;max-width:330px}
+.footer-grid h3{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8bd8cf;margin:6px 0 20px}
+.footer-grid>div:not(:first-child)>a,.footer-line{font-size:14px;margin:0;padding:9px 0;color:#d3e0e0;display:flex;align-items:center;gap:10px}
+.footer-grid a:hover{color:#8bd8cf}
+.footer-line svg{flex:none;color:#8bd8cf}
+.footer-note{font-size:13px;color:#9fb6b8}
+.footer-bottom{font-size:12px;color:#9fb6b8;border-top:1px solid #29434d;padding:20px 0}
+
+@media(max-width:900px){.editorial-hero-content,.editorial-hero-caption{width:calc(100% - 48px)}}
+@media(max-width:760px){
+  .site-header{height:70px}
+  .main-nav{top:70px;padding:8px 18px 20px}
+  .main-nav>a:not(.nav-cta){padding:16px 4px;font-size:16px;min-height:52px;border-bottom:1px solid var(--hair)}
+  .main-nav>a:not(.nav-cta)::after{display:none}
+  .editorial-hero-content,.editorial-hero-caption{width:calc(100% - 36px)}
+  .editorial-hero-description{font-size:15px}
+  .editorial-hero-caption{font-size:10px}
+  .editorial-service-row{grid-template-columns:28px 44px minmax(0,1fr)}
+  .editorial-service-copy p{font-size:14px}
+  .editorial-service-action{font-size:13px;min-height:44px}
+  .editorial-faq-answer{padding-right:6px}
+  .editorial-portfolio-foot,.results-count{font-size:10px}
+  .photo-grid--editorial .photo-card:nth-child(n){margin-top:0}
+  .photo-grid--editorial .photo-card:nth-child(even){margin-top:28px}
+  .footer-grid{grid-template-columns:1fr;gap:34px;padding:52px 0 36px}
+}
